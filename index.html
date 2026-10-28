@@ -1,0 +1,763 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minha Pequena, Minha Princesa ❤️</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;font-family:Georgia,serif;color:#71374f;text-align:center;
+ background:linear-gradient(135deg,#ffe0ec,#fff5f8,#f3ddff);
+}
+header{padding:55px 15px 35px}
+h1{font-size:clamp(34px,7vw,58px);margin:15px 0}
+h2{color:#c34778}
+.heart{font-size:65px;animation:pulse 1.4s infinite}
+section{
+ width:min(92%,850px);margin:25px auto;padding:28px 20px;
+ background:#ffffffd9;border-radius:25px;
+ box-shadow:0 8px 30px #bc5b8120;
+}
+p{font-size:17px;line-height:1.8}
+button,.upload{
+ display:inline-block;background:#df5785;color:white;border:0;
+ border-radius:30px;padding:13px 21px;margin:8px;
+ cursor:pointer;font-size:16px;
+}
+button:hover,.upload:hover{background:#b93467}
+.gallery{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+ gap:14px;margin-top:22px
+}
+.gallery img{
+ width:100%;height:250px;object-fit:cover;border-radius:18px;
+ box-shadow:0 5px 15px #a64b7020
+}
+.placeholder{
+ background:#fff0f5;border:2px dashed #e8a0bc;border-radius:18px;
+ min-height:180px;display:grid;place-items:center;padding:15px
+}
+input[type=file]{display:none}
+#surprise{display:none;background:#fff0f6;padding:20px;border-radius:18px}
+footer{padding:25px}
+.floating{position:fixed;bottom:-40px;animation:rise 6s linear forwards;pointer-events:none}
+@keyframes pulse{50%{transform:scale(1.15)}}
+@keyframes rise{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+
+/* ✨ EFEITOS ROMÂNTICOS EXTRAS */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-size: 200% 200%;
+  animation: fundoRomantico 14s ease infinite;
+}
+
+@keyframes fundoRomantico {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Cartões com movimento suave */
+section {
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+section:hover {
+  box-shadow: 0 16px 38px #bc5b8130;
+}
+
+/* Animação dos títulos */
+h1, h2 {
+  animation: tituloSuave 1s ease both;
+}
+
+@keyframes tituloSuave {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Botões mais delicados */
+button, .upload {
+  box-shadow: 0 5px 14px #df578530;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+button:hover, .upload:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 9px 20px #df578550;
+}
+
+/* Cartões das lembranças */
+#nossa-historia .memoria,
+#memoriasNovas article {
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+#nossa-historia .memoria:hover,
+#memoriasNovas article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px #df578525;
+}
+
+/* Fotos com efeito suave */
+.gallery img,
+#memoriasNovas img {
+  transition: transform .35s ease, filter .35s ease;
+}
+
+.gallery img:hover,
+#memoriasNovas img:hover {
+  transform: scale(1.025);
+  filter: saturate(1.08);
+}
+
+/* Respeitar quem prefere menos animações */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+.abertura {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #ffb6d5, #ffe5ef, #f8b4d9);
+  transition: opacity .8s ease, visibility .8s ease;
+}
+
+.envelope {
+  width: 100%;
+  max-width: 440px;
+  padding: 35px 25px;
+  text-align: center;
+  background: #ffffffeb;
+  border-radius: 28px;
+  box-shadow: 0 15px 45px #b8427730;
+  animation: surgirCartinha 1s ease;
+}
+
+.coracao-envelope {
+  font-size: 75px;
+  margin-bottom: 12px;
+  animation: pulsarCartinha 1.5s infinite;
+}
+
+.envelope h1 {
+  color: #d63384;
+  font-size: 28px;
+}
+
+.envelope p {
+  color: #8b4168;
+  line-height: 1.7;
+  margin: 18px 0 24px;
+}
+
+.abertura.fechando {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+@keyframes surgirCartinha {
+  from { opacity: 0; transform: translateY(25px) scale(.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes pulsarCartinha {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+</style>
+</head>
+<body>
+<div id="abertura" class="abertura">
+  <div class="envelope">
+    <div class="coracao-envelope">💌</div>
+    <h1>Tenho uma coisinha especial pra você...</h1>
+    <p>Preparei tudo com muito carinho, minha princesa. ❤️</p>
+    <button onclick="abrirCartinha()">Abrir minha cartinha ❤️</button>
+  </div>
+</div>
+
+<header>
+ <div class="heart">❤️</div>
+ <h1>Minha Pequena,<br>Minha Princesa</h1>
+ <p>Um cantinho feito especialmente para você 💗</p>
+</header>
+
+<section>
+ <h2>Você é especial para mim 🌷</h2>
+ <p>
+ Queria criar um lugar só nosso, cheio de carinho,
+ lembranças e motivos para sorrir. Você faz parte da
+ minha história, e quero guardar aqui momentos que
+ tornam nossa história tão especial.
+ </p>
+ <p>Espero que cada pedacinho deste site faça você sorrir. 💕</p>
+</section>
+
+<section>
+ <h2>Nossas lembranças 📸</h2>
+ <p>Escolha as fotos de vocês no botão abaixo para montar a galeria.</p>
+ <label class="upload" for="photos">💌 Escolher nossas fotos</label>
+ <input id="photos" type="file" accept="image/*" multiple>
+ <div class="gallery" id="gallery">
+  <div class="placeholder">💗<br>Suas fotos aparecerão aqui</div>
+ </div>
+ <p style="font-size:13px">As fotos aparecem nesta página enquanto ela estiver aberta. Para incluí-las no site publicado, precisaremos organizar os arquivos juntos.</p>
+</section>
+
+
+<section>
+ <h2>❤️ Nossa história juntos ❤️</h2>
+ <p>Cada dia ao seu lado é uma lembrança especial.</p>
+
+ <label for="dataNamoro">O dia em que começamos:</label>
+ <br><br>
+ <input
+   type="date"
+   id="dataNamoro"
+   style="padding:12px;border:1px solid #e8a0bc;border-radius:12px;font-size:16px;"
+ >
+ <br><br>
+
+ <div style="font-size:clamp(30px,7vw,48px);font-weight:bold;color:#df5785">
+   <span id="diasJuntos">❤️</span>
+ </div>
+ <p id="mensagemDias">Escolha a data para começar nossa contagem!</p>
+</section>
+
+
+<section id="nossa-historia">
+  <h2>💕 Nossa história</h2>
+  <p>Os momentos especiais da nossa história.</p>
+
+  <div style="text-align:left;max-width:600px;margin:25px auto">
+<div style="background:#fff0f5;padding:20px;border-radius:18px;margin:20px auto;text-align:left">
+  <h3 style="text-align:center">💌 Adicionar uma lembrança</h3>
+
+  <label for="memData">Data da lembrança:</label>
+  <input id="memData" type="date"
+    style="display:block;width:100%;padding:12px;margin:8px 0 15px;border:1px solid #e8a0bc;border-radius:10px">
+
+  <label for="memTitulo">Título:</label>
+  <input id="memTitulo" type="text" placeholder="Ex.: Nosso primeiro encontro"
+    style="display:block;width:100%;padding:12px;margin:8px 0 15px;border:1px solid #e8a0bc;border-radius:10px">
+
+  <label for="memTexto">Conte a lembrança:</label>
+  <textarea id="memTexto" placeholder="Escreva aqui o que tornou esse dia especial..."
+    style="display:block;width:100%;min-height:90px;padding:12px;margin:8px 0 15px;border:1px solid #e8a0bc;border-radius:10px;font:inherit"></textarea>
+
+  <label for="memFoto">Escolher uma foto (opcional):</label>
+  <input id="memFoto" type="file" accept="image/*"
+    style="display:block;width:100%;margin:12px 0">
+
+  <button type="button" onclick="adicionarMemoria()" style="width:100%">
+    ❤️ Guardar lembrança
+  </button>
+  <p id="memAviso" style="font-size:14px"></p>
+</div>
+
+<div id="memoriasNovas"></div>
+
+    <div style="padding:15px;margin-bottom:15px;background:#fff0f5;border-radius:16px">
+      <h3>🌷 Nosso primeiro encontro</h3>
+      <p>O O dia que vivemos uma lembrança inesquecivel.</p>
+    </div>
+
+    <div style="padding:15px;margin-bottom:15px;background:#fff0f5;border-radius:16px">
+      <h3>💌 Uma lembrança inesquecível</h3>
+      <p>Um momento que merece ficar guardado para sempre.</p>
+    </div>
+
+    <div style="padding:15px;background:#fff0f5;border-radius:16px">
+      <h3>❤️ Nossa história continua</h3>
+      <p>Ainda temos muitas lembranças bonitas para viver.</p>
+    </div>
+  </div>
+</section>
+<section>
+ <h2>Uma cartinha para você 💌</h2>
+ <p>
+ Minha princesa, nunca quero que você esqueça o quanto
+ merece carinho, respeito e felicidade. Obrigado por
+ fazer parte da minha vida e por dividir comigo tantos
+ momentos especiais. Que ainda tenhamos muitas
+ lembranças lindas para construir. ❤️
+ </p>
+ <button onclick="surpresa()">✨ Abrir surpresa secreta</button>
+ <div id="surprise">
+  <h2>Surpresa, minha pequena! 💖</h2>
+  <p>Se eu pudesse transformar meu carinho em estrelas,
+  o céu inteiro seria pequeno para mostrar tudo isso. 🌟</p>
+  <div style="font-size:38px">💗🌹💌</div>
+ </div>
+</section>
+
+<section>
+ <h2>Um pouquinho de amor 💞</h2>
+ <p>Toque no botão e encha a tela de corações!</p>
+ <button onclick="hearts()">❤️ Espalhar corações</button>
+</section>
+
+<footer>Feito com carinho, especialmente para você. ❤️</footer>
+
+<script>
+const picker=document.getElementById('photos');
+const campoData = document.getElementById('dataNamoro');
+const numeroDias = document.getElementById('diasJuntos');
+const mensagemDias = document.getElementById('mensagemDias');
+
+function atualizarContador() {
+  if (!campoData.value) {
+    numeroDias.textContent = '❤️';
+    mensagemDias.textContent = 'Escolha a data para começar nossa contagem!';
+    return;
+  }
+
+  const partes = campoData.value.split('-').map(Number);
+  const inicio = Date.UTC(partes[0], partes[1] - 1, partes[2]);
+  const agora = new Date();
+  const hoje = Date.UTC(
+    agora.getFullYear(),
+    agora.getMonth(),
+    agora.getDate()
+  );
+
+  const dias = Math.floor((hoje - inicio) / 86400000);
+
+  if (dias < 0) {
+    numeroDias.textContent = '💗';
+    mensagemDias.textContent = 'Essa data ainda está por chegar!';
+    return;
+  }
+
+  numeroDias.textContent = dias + (dias === 1 ? ' dia' : ' dias');
+  mensagemDias.textContent =
+    dias === 0
+      ? 'Nossa contagem começa hoje! 💕'
+      : 'De carinho, lembranças e uma história que continua. 💕';
+}
+campoData.value = localStorage.getItem('dataNamoroSalva') || '';
+
+campoData.addEventListener('change', function() {
+  localStorage.setItem('dataNamoroSalva', campoData.value);
+  atualizarContador();
+});
+
+atualizarContador();
+
+const fotosDoSite = [
+  'fotos/foto1.jpeg',
+  'fotos/foto2.jpeg',
+  'fotos/foto3.jpeg',
+  'fotos/foto4.jpeg',
+  'fotos/foto5.jpeg',
+  'fotos/foto6.jpeg',
+  'fotos/foto7.jpeg',
+  'fotos/foto8.jpeg',
+  'fotos/foto9.jpeg'
+];
+
+function carregarFotos() {
+  gallery.innerHTML = '';
+
+  fotosDoSite.forEach(caminho => {
+    const img = document.createElement('img');
+    img.src = caminho;
+    img.alt = 'Nossa lembrança';
+
+    img.onerror = () => {
+      img.alt = 'Foto não encontrada: ' + caminho;
+      img.style.display = 'none';
+    };
+
+    gallery.appendChild(img);
+  });
+}
+
+carregarFotos();
+
+picker.addEventListener('change', function() {
+  Array.from(this.files).forEach(file => {
+    if (!file.type.startsWith('image/')) return;
+
+    const img = document.createElement('img');
+    img.alt = 'Nossa lembrança';
+    img.src = URL.createObjectURL(file);
+    gallery.appendChild(img);
+  });
+});
+
+
+const chaveMemorias = 'memoriasRomanticasV1';
+
+function mostrarMemorias() {
+  const lista = document.getElementById('memoriasNovas');
+  const memorias = JSON.parse(
+    localStorage.getItem(chaveMemorias) || '[]'
+  );
+
+  lista.innerHTML = '';
+
+  memorias.forEach((m, i) => {
+    const cartao = document.createElement('article');
+    cartao.style.cssText =
+      'background:#fff3f7;padding:18px;margin:15px 0;border-radius:18px;text-align:left';
+
+    const titulo = document.createElement('h3');
+    titulo.textContent = '💗 ' + m.titulo;
+    cartao.appendChild(titulo);
+
+    if (m.data) {
+      const data = document.createElement('p');
+      data.textContent = m.data.split('-').reverse().join('/');
+      cartao.appendChild(data);
+    }
+
+    const texto = document.createElement('p');
+    texto.textContent = m.texto;
+    cartao.appendChild(texto);
+
+    if (m.foto) {
+      const img = document.createElement('img');
+      img.src = m.foto;
+      img.alt = 'Foto da lembrança';
+      img.style.cssText =
+        'width:100%;max-height:300px;object-fit:cover;border-radius:14px';
+      cartao.appendChild(img);
+    }
+
+    const excluir = document.createElement('button');
+    excluir.textContent = '🗑️ Excluir lembrança';
+    excluir.onclick = () => {
+      if (confirm('Deseja excluir esta lembrança?')) {
+        memorias.splice(i, 1);
+        localStorage.setItem(chaveMemorias, JSON.stringify(memorias));
+        mostrarMemorias();
+      }
+    };
+
+    cartao.appendChild(excluir);
+    lista.appendChild(cartao);
+  });
+}
+
+async function adicionarMemoria() {
+  const data = document.getElementById('memData').value;
+  const titulo = document.getElementById('memTitulo').value.trim();
+  const texto = document.getElementById('memTexto').value.trim();
+  const arquivo = document.getElementById('memFoto').files[0];
+  const aviso = document.getElementById('memAviso');
+
+  if (!titulo || !texto) {
+    aviso.textContent = 'Preencha o título e a lembrança. 💗';
+    return;
+  }
+
+  if (arquivo && !arquivo.type.startsWith('image/')) {
+    aviso.textContent = 'Escolha um arquivo de imagem.';
+    return;
+  }
+
+  if (arquivo && arquivo.size > 2 * 1024 * 1024) {
+    aviso.textContent = 'Escolha uma foto de até 2 MB.';
+    return;
+  }
+
+  const lerFoto = file => new Promise((resolve, reject) => {
+    if (!file) return resolve('');
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+
+  try {
+    aviso.textContent = 'Guardando sua lembrança...';
+
+    const foto = await lerFoto(arquivo);
+    const memorias = JSON.parse(
+      localStorage.getItem(chaveMemorias) || '[]'
+    );
+
+    memorias.push({ data, titulo, texto, foto });
+    localStorage.setItem(chaveMemorias, JSON.stringify(memorias));
+
+    document.getElementById('memTitulo').value = '';
+    document.getElementById('memTexto').value = '';
+    document.getElementById('memData').value = '';
+    document.getElementById('memFoto').value = '';
+
+    aviso.textContent = 'Lembrança guardada com sucesso! ❤️';
+    mostrarMemorias();
+  } catch (erro) {
+    aviso.textContent =
+      'Não foi possível guardar. Tente uma foto menor ou remova algumas lembranças.';
+  }
+}
+
+mostrarMemorias();
+
+function abrirCartinha() {
+  const abertura = document.getElementById("abertura");
+  abertura.classList.add("fechando");
+
+  setTimeout(() => {
+    abertura.style.display = "none";
+  }, 850);
+}
+function surpresa(){
+ document.getElementById('surprise').style.display='block';
+ hearts();
+}
+function hearts(){
+ for(let i=0;i<30;i++){
+  const el=document.createElement('span');
+  el.className='floating';
+  el.textContent=['❤️','💗','💖','💕','🌷'][Math.floor(Math.random()*5)];
+  el.style.left=Math.random()*100+'vw';
+  el.style.fontSize=(18+Math.random()*24)+'px';
+  el.style.animationDuration=(4+Math.random()*4)+'s';
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),8500);
+ }
+}
+</script>
+
+</script>
+
+<section id="cartinhas-secretas">
+  <h2>💌 Cartinhas para cada momento</h2>
+  <p>Escolha uma cartinha, minha princesa. Tem uma mensagem esperando por você. ❤️</p>
+
+  <button onclick="abrirMensagem('saudade')">🥺 Quando sentir saudade</button>
+  <button onclick="abrirMensagem('triste')">🫂 Quando estiver triste</button>
+  <button onclick="abrirMensagem('feliz')">🌷 Quando estiver feliz</button>
+  <button onclick="abrirMensagem('amor')">❤️ Quando quiser lembrar do meu amor</button>
+
+  <div id="mensagemCartinha" style="display:none;background:#fff0f6;padding:20px;border-radius:18px;margin-top:20px">
+    <p id="textoCartinha"></p>
+  </div>
+</section>
+
+<script>
+function abrirMensagem(tipo) {
+  const mensagens = {
+    saudade: "Mesmo quando eu não estiver pertinho, quero que você lembre que tem um lugar enorme no meu coração. A distância não muda o carinho que sinto por você. ❤️",
+    triste: "Se hoje estiver difícil, respira um pouquinho. Você merece carinho, paciência e dias mais leves. Estou torcendo por você. 🫂💗",
+    feliz: "Quando você estiver feliz, quero que aproveite esse momento lindo e guarde essa alegria no coração. 🌷",
+    amor: "Eu te amo pelo que você é, pelo jeito que faz parte da minha vida e por todas as lembranças que ainda podemos construir. Você é muito especial para mim. 💌"
+  };
+
+  document.getElementById("textoCartinha").textContent = mensagens[tipo] || "";
+  document.getElementById("mensagemCartinha").style.display = "block";
+  document.getElementById("mensagemCartinha").scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
+</script>
+
+<section id="cem-razoes" style="text-align:center; padding:30px 15px;">
+  <h2>❤️ 100 razões pelas quais eu te amo</h2>
+  <p>Se eu pudesse, passaria a vida inteira te contando cada uma delas. 💌</p>
+
+  <button onclick="mostrarRazoes()" style="padding:12px 20px; border:0; border-radius:20px; background:#ff69a6; color:white; cursor:pointer;">
+    💗 Descobrir minhas razões
+  </button>
+
+  <div id="listaRazoes" style="display:none; text-align:left; max-width:600px; margin:20px auto; background:#fff0f6; padding:20px; border-radius:18px;">
+    <ol id="razoesConteudo"></ol>
+  </div>
+</section>
+
+<script>
+function mostrarRazoes() {
+  const lista = document.getElementById("listaRazoes");
+  const conteudo = document.getElementById("razoesConteudo");
+
+  if (conteudo.children.length === 0) {
+    const razoes = [
+      "Pelo seu sorriso.",
+      "Pelo seu jeitinho único.",
+      "Pelo brilho dos seus olhos.",
+      "Pela sua risada.",
+      "Por me fazer sorrir.",
+      "Pela pessoa incrível que você é.",
+      "Pelo carinho que você me dá.",
+      "Pelas nossas conversas.",
+      "Pelas nossas brincadeiras.",
+      "Por cada momento juntos.",
+      "Pelo jeito que você me olha.",
+      "Por me escutar.",
+      "Por confiar em mim.",
+      "Pela sua sinceridade.",
+      "Pelo seu coração.",
+      "Por me fazer companhia.",
+      "Pelas mensagens inesperadas.",
+      "Pelos seus abraços.",
+      "Pelo seu bom humor.",
+      "Pelo seu jeito de falar.",
+      "Por me apoiar.",
+      "Por me incentivar.",
+      "Por me fazer companhia nos dias difíceis.",
+      "Pela sua inteligência.",
+      "Pela sua criatividade.",
+      "Pela sua personalidade.",
+      "Pelo seu carinho nos pequenos detalhes.",
+      "Pelas lembranças que construímos.",
+      "Pelos nossos momentos engraçados.",
+      "Por me fazer sentir especial.",
+      "Pela sua coragem.",
+      "Pela sua determinação.",
+      "Pelo seu jeito espontâneo.",
+      "Pelas suas ideias.",
+      "Pelo jeito que você conta histórias.",
+      "Por cada bom-dia.",
+      "Por cada boa-noite.",
+      "Pelas nossas conversas bobas.",
+      "Pelos nossos planos.",
+      "Pelos sonhos que você tem.",
+      "Por respeitar meus sentimentos.",
+      "Por ser você mesma.",
+      "Pela sua gentileza.",
+      "Pelo seu cuidado.",
+      "Pela sua energia.",
+      "Pelo jeito que você demonstra amor.",
+      "Por cada risada compartilhada.",
+      "Pelas músicas que lembram você.",
+      "Pelos momentos simples ao seu lado.",
+      "Por tornar dias comuns especiais.",
+      "Pelo seu jeito de demonstrar felicidade.",
+      "Por me ensinar coisas novas.",
+      "Pela sua paciência.",
+      "Pelo seu companheirismo.",
+      "Por cada surpresa boa.",
+      "Pelas nossas brincadeiras internas.",
+      "Pelas conversas que duram horas.",
+      "Pelo seu jeito de me animar.",
+      "Por lembrar de pequenos detalhes.",
+      "Pela sua sensibilidade.",
+      "Pelo seu jeito de ver o mundo.",
+      "Pela sua autenticidade.",
+      "Pela sua dedicação.",
+      "Por compartilhar seus pensamentos.",
+      "Por me deixar conhecer seu mundo.",
+      "Pelas coisas que aprendemos juntos.",
+      "Pelo carinho nas pequenas atitudes.",
+      "Pelo seu jeito de demonstrar saudade.",
+      "Por cada momento de paz.",
+      "Pelas nossas fotos.",
+      "Pelas memórias que guardo com carinho.",
+      "Pelo seu jeito divertido.",
+      "Pela sua curiosidade.",
+      "Pelas suas conquistas.",
+      "Por acreditar nos seus sonhos.",
+      "Pelo seu jeito de cuidar de quem ama.",
+      "Por me fazer querer ser uma pessoa melhor.",
+      "Pela sua companhia em qualquer assunto.",
+      "Pelas conversas inesperadas.",
+      "Por cada momento de cumplicidade.",
+      "Pelo seu jeito carinhoso.",
+      "Pela confiança que construímos.",
+      "Por cada coisa nova que descobrimos.",
+      "Pelo seu entusiasmo.",
+      "Pela sua força nos desafios.",
+      "Pelo seu jeito de celebrar as coisas boas.",
+      "Por cada lembrança que me faz sorrir.",
+      "Pela sua maneira única de demonstrar afeto.",
+      "Pelos nossos momentos tranquilos.",
+      "Por dividir seus dias comigo.",
+      "Pelo que já vivemos.",
+      "Pelo que ainda podemos viver.",
+      "Pelos planos que fazemos juntos.",
+      "Pela felicidade que compartilhamos.",
+      "Pelo carinho que existe entre nós.",
+      "Pela história que estamos construindo.",
+      "Por todos os detalhes que fazem você ser você.",
+      "Porque gosto de descobrir mais sobre você.",
+      "Porque você tem um lugar especial na minha vida.",
+      "E porque, entre tantas razões, meu coração continua escolhendo você. ❤️"
+    ];
+
+    razoes.forEach(function(razao) {
+      const item = document.createElement("li");
+      item.textContent = razao;
+      item.style.marginBottom = "8px";
+      conteudo.appendChild(item);
+    });
+  }
+
+  lista.style.display = lista.style.display === "none" ? "block" : "none";
+}
+</script>
+
+<section id="ceu-amor" style="
+  background:linear-gradient(180deg,#080b2b,#25104b,#54245f);
+  color:white;
+  text-align:center;
+  padding:45px 15px;
+  border-radius:22px;
+  margin:25px 0;
+  overflow:hidden;
+">
+  <div style="font-size:75px; animation:luaBrilha 3s infinite alternate;">🌙</div>
+
+  <h2 style="color:#ffe6ff;">Debaixo do mesmo céu ❤️</h2>
+
+  <div id="estrelasAmor" style="
+    font-size:25px;
+    line-height:2;
+    letter-spacing:10px;
+  ">✦ · ✧ · ✦ · ⋆ · ✧ · ✦</div>
+
+  <p style="font-size:19px; margin-top:20px;">
+    Eu e você, escritos nas estrelas. 💗
+  </p>
+
+  <p style="color:#f5d7ff;">
+    Não importa onde estivermos, sempre vou guardar você no meu coração.
+  </p>
+</section>
+
+<style>
+#estrelasAmor {
+  animation: estrelasPiscando 2.5s ease-in-out infinite alternate;
+  text-shadow: 0 0 8px #fff, 0 0 18px #d9b8ff;
+}
+
+@keyframes estrelasPiscando {
+  from { opacity: 0.55; }
+  to { opacity: 1; }
+}
+@keyframes luaBrilha {
+  from { transform:scale(1); filter:drop-shadow(0 0 5px #fff); }
+  to { transform:scale(1.08); filter:drop-shadow(0 0 20px #e7c5ff); }
+}
+</style>
+
+</body>
+</html>
+
+ 
